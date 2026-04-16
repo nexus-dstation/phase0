@@ -1,4 +1,3 @@
-[phase0.html](https://github.com/user-attachments/files/26775400/phase0.html)
 <!DOCTYPE html>
 <html lang="ja">
 <head>
