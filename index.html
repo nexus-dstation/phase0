@@ -510,38 +510,47 @@ html,body{
   <div class="bg-grid"></div>
   <div class="s-head"><span class="s-num">02 / 07</span><span class="s-tag">目標</span></div>
   <div class="s-body">
-    <div class="s-title">フェーズ0 <em>目標</em></div>
+    <div class="s-title">フェーズ0 <em>目標設定</em></div>
 
-    <div class="goal-flow">
-      <div class="gf-box card-gold">
-        <div class="gf-step">GOAL</div>
-        <div class="gf-title" style="color:var(--gold);">購入台数に<br>根拠を持たせる</div>
-        <div class="gf-body">
-          いつ・何台・なぜ買うかを<br>
-          データで説明できる状態をつくる
+    <!-- GOAL ブロック -->
+    <div style="background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.28);border-radius:16px;padding:32px 40px;flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;">
+
+      <div style="font-size:10px;font-weight:700;letter-spacing:3px;color:var(--gold);">GOAL</div>
+
+      <div style="font-size:36px;font-weight:700;color:var(--gold);line-height:1.3;">
+        購入台数に<br>根拠を持たせる
+      </div>
+
+      <!-- 問い一覧 -->
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:12px;padding:11px 18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;">
+          <span style="font-size:16px;">❓</span>
+          <span style="font-size:16px;font-weight:600;">なぜ買うか？</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:11px 18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;">
+          <span style="font-size:16px;">❓</span>
+          <span style="font-size:16px;font-weight:600;">最適な台数は？</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:11px 18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;">
+          <span style="font-size:16px;">❓</span>
+          <span style="font-size:16px;font-weight:600;">最適な商圏シェアは？</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:11px 18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;">
+          <span style="font-size:16px;">❓</span>
+          <span style="font-size:16px;font-weight:600;">店舗ごとの客層に何を提供する？</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:11px 18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;">
+          <span style="font-size:16px;">❓</span>
+          <span style="font-size:16px;font-weight:600;">回遊特性はどこにある？</span>
         </div>
       </div>
 
-      <div class="gf-arr">
-        <div class="gf-arr-icon">→</div>
-        <div class="gf-arr-label">目的</div>
+      <!-- 結論 -->
+      <div style="margin-top:4px;padding:16px 20px;background:rgba(245,166,35,.12);border-radius:10px;border:1px solid rgba(245,166,35,.35);display:flex;align-items:center;gap:12px;">
+        <span style="font-size:20px;">✅</span>
+        <span style="font-size:16px;font-weight:700;color:var(--t1);">データで説明できる状態をつくる</span>
       </div>
 
-      <div class="gf-box card-blue">
-        <div class="gf-step">OUTCOME</div>
-        <div class="gf-title" style="color:var(--blue);">店舗に合った<br>買い方の構築</div>
-        <div class="gf-body">
-          店舗ごとの客層・回遊特性をもとに<br>
-          最適な機種・台数を選定できる体制
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:18px;background:rgba(255,255,255,.04);border:1px solid var(--br);border-radius:12px;padding:16px 22px;display:flex;align-items:center;gap:16px;flex-shrink:0;">
-      <span style="font-size:20px;">📌</span>
-      <p style="font-size:15px;color:var(--t2);line-height:1.7;">
-        「良い台を増やす」より「<strong style="color:var(--gold);">悪い台を買い過ぎない</strong>」。機種の良し悪しより、<strong style="color:var(--t1);">台数の判断に根拠</strong>を持たせることが先決。
-      </p>
     </div>
   </div>
 </section>
@@ -553,7 +562,7 @@ html,body{
   <div class="bg-grid"></div>
   <div class="s-head"><span class="s-num">03 / 07</span><span class="s-tag">問題の構造</span></div>
   <div class="s-body">
-    <div class="s-title">現状の問題点<em>機械購入判断の根拠がない</em></div>
+    <div class="s-title">現状の問題点<em>「機械購入判断の根拠がない」</em></div>
 
     <div class="prob-list">
       <div class="prob">
@@ -684,7 +693,7 @@ html,body{
         <span style="font-size:26px;font-weight:900;color:#ff8a80;">▲11.7億円</span>
       </div>
       <div class="rv-sum-box" style="background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.25);flex:1.2;">
-        <span style="font-size:13px;font-weight:700;color:var(--gold);">💡 同じ台数規模でも、<strong style="color:var(--t1);">買い方の根拠</strong>で結果が大きく変わる</span>
+        <span style="font-size:13px;font-weight:700;color:var(--t2);">当たり機種の恩恵が大きい一方、<strong style="color:var(--gold);">ギャンブル性の高い購入方法</strong>では失敗機種のリスクも大きい</span>
       </div>
     </div>
   </div>
@@ -697,48 +706,55 @@ html,body{
   <div class="bg-grid"></div>
   <div class="s-head"><span class="s-num">05 / 07</span><span class="s-tag">解決アプローチ</span></div>
   <div class="s-body">
-    <div class="s-title"><em>各店ごとの新台回遊データ</em>を軸に、根拠をつくる</div>
+    <div class="s-title"><em>根拠をどこに作るか？</em></div>
 
-    <div class="approach-grid">
-      <div class="ap-box ap-indep">
-        <div class="ap-label">説明変数（導入前に取得可能）</div>
-        <ul class="ap-list">
-          <li>🎭 版権</li>
-          <li>⚙️ スペック</li>
-          <li>🏭 メーカー</li>
-          <li>📍 配置</li>
-          <li>📅 導入時期</li>
-        </ul>
-      </div>
+    <!-- 2カラム：説明変数 ＋ 回遊データ -->
+    <div style="display:flex;gap:16px;flex:1;min-height:0;">
 
-      <div class="ap-arr">
-        <div class="ap-arr-icon">⇒</div>
-        <div class="ap-arr-text">影響度<br>分析</div>
-      </div>
-
-      <div class="ap-box ap-dep">
-        <div class="ap-label">目的変数</div>
-        <ul class="ap-list">
-          <li>🔄 店舗ごとの新台回遊データ</li>
-        </ul>
-        <div style="margin-top:16px;font-size:14px;color:var(--t2);line-height:1.8;">
-          顧客が複数機種を移動する「回遊行動」を定着の指標に設定。<br>
-          どの特性が回遊に最も影響するかを抽出し、<br>
-          <strong style="color:var(--gold);">「売れやすい背景」を定量化する。</strong>
+      <!-- 左：説明変数 -->
+      <div style="flex:1;background:rgba(79,195,247,.06);border:1px solid rgba(79,195,247,.22);border-radius:14px;padding:24px 26px;display:flex;flex-direction:column;gap:14px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--blue);">STEP 1</div>
+        <div style="font-size:18px;font-weight:700;color:var(--t1);line-height:1.4;">導入前に取得できる<br><span style="color:var(--blue);">精度の高い説明変数</span></div>
+        <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
+          <div style="padding:10px 14px;background:rgba(79,195,247,.07);border-radius:8px;font-size:15px;font-weight:600;">⚙️ スペック</div>
+          <div style="padding:10px 14px;background:rgba(79,195,247,.07);border-radius:8px;font-size:15px;font-weight:600;">🎭 版権実績</div>
+          <div style="padding:10px 14px;background:rgba(79,195,247,.07);border-radius:8px;font-size:15px;font-weight:600;">🏭 メーカー実績</div>
+          <div style="padding:10px 14px;background:rgba(79,195,247,.07);border-radius:8px;font-size:15px;font-weight:600;">📅 導入時期</div>
+        </div>
+        <div style="padding:10px 14px;background:rgba(239,83,80,.07);border:1px solid rgba(239,83,80,.2);border-radius:8px;font-size:13px;color:#ff8a80;line-height:1.6;">
+          ⚠️ 精度の低い<strong>販売台数・価格</strong>などは使用しない
         </div>
       </div>
+
+      <!-- 矢印 -->
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;flex-shrink:0;padding:0 8px;">
+        <div style="font-size:28px;color:var(--gold);opacity:.6;">＋</div>
+      </div>
+
+      <!-- 右：回遊データ -->
+      <div style="flex:1;background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.28);border-radius:14px;padding:24px 26px;display:flex;flex-direction:column;gap:14px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--gold);">STEP 2</div>
+        <div style="font-size:18px;font-weight:700;color:var(--t1);line-height:1.4;">店舗独自の<br><span style="color:var(--gold);">回遊データを組み合わせる</span></div>
+        <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
+          <div style="padding:10px 14px;background:rgba(245,166,35,.07);border-radius:8px;font-size:15px;font-weight:600;">📊 過去の新台データ</div>
+          <div style="padding:10px 14px;background:rgba(245,166,35,.07);border-radius:8px;font-size:15px;font-weight:600;">📍 配置実績</div>
+          <div style="padding:10px 14px;background:rgba(245,166,35,.07);border-radius:8px;font-size:15px;font-weight:600;">🔄 他機種への影響</div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="source-row">
-      <div style="flex-shrink:0;">
-        <div style="font-size:14px;font-weight:700;">THINX · 吉元氏</div>
-        <div style="font-size:12px;color:var(--t2);">上場メーカー遊技機開発 / データアナリスト・統計士</div>
+    <!-- 吉元氏 引用（大きめ） -->
+    <div style="margin-top:16px;flex-shrink:0;background:linear-gradient(135deg,rgba(245,166,35,.10),rgba(79,195,247,.06));border:1px solid rgba(245,166,35,.3);border-radius:14px;padding:22px 28px;display:flex;gap:20px;align-items:center;">
+      <div style="flex-shrink:0;text-align:center;padding-right:20px;border-right:1px solid var(--br);">
+        <div style="font-size:17px;font-weight:700;color:var(--gold);">THINX · 吉元氏</div>
+        <div style="font-size:12px;color:var(--t2);margin-top:4px;line-height:1.6;">上場メーカー遊技機開発<br>データアナリスト・統計士</div>
       </div>
-      <div style="width:1px;background:var(--br);align-self:stretch;"></div>
-      <div style="font-size:13px;color:var(--t2);line-height:1.8;flex:1;">
-        「重要なのは回遊データを起点に、導入前の説明変数と目的変数の関係を可視化することだ」
+      <div style="font-size:17px;font-weight:500;color:var(--t1);line-height:1.8;flex:1;">
+        「重要なのは回遊データを起点に、<strong style="color:var(--gold);">導入前の説明変数と目的変数の関係</strong>を可視化することだ」
       </div>
     </div>
+
   </div>
 </section>
 
@@ -748,90 +764,70 @@ html,body{
 <section class="slide" id="s6">
   <div class="bg-grid"></div>
   <div class="s-head"><span class="s-num">06 / 07</span><span class="s-tag">新台購入の目的</span></div>
-  <div class="s-body">
-    <div class="s-title"><em>新台購入の目的</em>を、店舗ごとに明確にする</div>
+  <div class="s-body" style="align-items:center;">
+    <div class="s-title" style="text-align:center;width:100%;">店舗ごとに<em>目的を明確に</em>する</div>
 
-    <!-- 現状 → 目標 フロー -->
-    <div style="display:flex;align-items:stretch;gap:0;flex:1;min-height:0;">
+    <!-- メインエリア：ベン図 ＋ 説明 -->
+    <div style="display:flex;align-items:center;gap:48px;flex:1;min-height:0;width:100%;justify-content:center;">
 
-      <!-- 現状 -->
-      <div style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:28px 32px;display:flex;flex-direction:column;gap:14px;justify-content:center;">
-        <div style="font-size:10px;font-weight:700;letter-spacing:3px;color:var(--t3);">CURRENT STATE</div>
-        <div style="font-size:26px;font-weight:700;color:var(--t2);line-height:1.3;">現状</div>
-        <div style="width:40px;height:2px;background:var(--t3);border-radius:2px;"></div>
-        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px 20px;text-align:center;">
-          <div style="font-size:18px;font-weight:700;color:var(--t1);line-height:1.6;">全店共通で<br><span style="color:var(--t2);">集客＋粗利確保</span></div>
+      <!-- ベン図 -->
+      <div style="position:relative;width:320px;height:310px;flex-shrink:0;">
+
+        <!-- 集客（青・左上） -->
+        <div style="position:absolute;top:0;left:20px;width:190px;height:190px;border-radius:50%;background:rgba(79,195,247,.35);border:2px solid rgba(79,195,247,.6);"></div>
+        <!-- 粗利（緑・右上） -->
+        <div style="position:absolute;top:0;right:20px;width:190px;height:190px;border-radius:50%;background:rgba(76,175,129,.35);border:2px solid rgba(76,175,129,.6);"></div>
+        <!-- 回遊（金・下中） -->
+        <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:190px;height:190px;border-radius:50%;background:rgba(245,166,35,.32);border:2px solid rgba(245,166,35,.6);"></div>
+
+        <!-- ラベル：集客 -->
+        <div style="position:absolute;top:32px;left:28px;text-align:center;">
+          <div style="font-size:22px;font-weight:900;color:#7dd8f8;text-shadow:0 0 12px rgba(79,195,247,.6);">集客</div>
+          <div style="font-size:11px;color:rgba(79,195,247,.8);margin-top:2px;">何名集めたい</div>
         </div>
-        <div style="font-size:13px;color:var(--t3);line-height:1.7;">目的が曖昧なまま全店一律で判断。<br>何を優先すべきかが店舗ごとに異なるのに、共通の基準で動いている。</div>
+        <!-- ラベル：粗利 -->
+        <div style="position:absolute;top:32px;right:28px;text-align:center;">
+          <div style="font-size:22px;font-weight:900;color:#6de4a8;text-shadow:0 0 12px rgba(76,175,129,.6);">粗利</div>
+          <div style="font-size:11px;color:rgba(76,175,129,.8);margin-top:2px;">いくら確保したい</div>
+        </div>
+        <!-- ラベル：回遊 -->
+        <div style="position:absolute;bottom:18px;left:50%;transform:translateX(-50%);text-align:center;white-space:nowrap;">
+          <div style="font-size:22px;font-weight:900;color:#ffd080;text-shadow:0 0 12px rgba(245,166,35,.6);">回遊</div>
+          <div style="font-size:11px;color:rgba(245,166,35,.8);margin-top:2px;">どの機種に流したい</div>
+        </div>
+        <!-- 中心ラベル -->
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);text-align:center;z-index:2;">
+          <div style="font-size:13px;font-weight:700;color:#fff;background:rgba(13,27,53,.85);padding:6px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.2);white-space:nowrap;">店舗の<br>最適解</div>
+        </div>
+
       </div>
 
-      <!-- 矢印 -->
-      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 24px;flex-shrink:0;gap:6px;">
-        <div style="font-size:36px;color:var(--gold);opacity:.6;">→</div>
-        <div style="font-size:10px;color:var(--t3);letter-spacing:1px;">目指す姿</div>
-      </div>
-
-      <!-- 目標 -->
-      <div style="flex:1.4;background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.28);border-radius:16px;padding:28px 32px;display:flex;flex-direction:column;gap:12px;justify-content:center;">
-        <div style="font-size:10px;font-weight:700;letter-spacing:3px;color:var(--gold);">TARGET STATE</div>
-        <div style="font-size:26px;font-weight:700;color:var(--gold);line-height:1.3;">目標</div>
-        <div style="width:40px;height:2px;background:var(--gold);border-radius:2px;opacity:.5;"></div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="background:rgba(79,195,247,.08);border:1px solid rgba(79,195,247,.22);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:14px;">
-            <span style="font-size:20px;">👥</span>
-            <div>
-              <div style="font-size:11px;font-weight:700;color:var(--blue);letter-spacing:1.5px;margin-bottom:3px;">集客</div>
-              <div style="font-size:15px;font-weight:700;color:var(--t1);">何名集めたい</div>
-            </div>
-          </div>
-          <div style="background:rgba(76,175,129,.07);border:1px solid rgba(76,175,129,.24);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:14px;">
-            <span style="font-size:20px;">💴</span>
-            <div>
-              <div style="font-size:11px;font-weight:700;color:var(--green);letter-spacing:1.5px;margin-bottom:3px;">粗利</div>
-              <div style="font-size:15px;font-weight:700;color:var(--t1);">いくら確保したい</div>
-            </div>
-          </div>
-          <div style="background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.22);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:14px;">
-            <span style="font-size:20px;">🔄</span>
-            <div>
-              <div style="font-size:11px;font-weight:700;color:var(--gold);letter-spacing:1.5px;margin-bottom:3px;">回遊</div>
-              <div style="font-size:15px;font-weight:700;color:var(--t1);">どの機種に流したい</div>
-            </div>
-          </div>
+      <!-- 右：各目的の説明カード -->
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:360px;">
+        <div style="background:rgba(79,195,247,.08);border:1px solid rgba(79,195,247,.3);border-left:4px solid var(--blue);border-radius:0 12px 12px 0;padding:16px 20px;">
+          <div style="font-size:13px;font-weight:700;color:var(--blue);letter-spacing:2px;margin-bottom:6px;">集客</div>
+          <div style="font-size:17px;font-weight:700;color:var(--t1);">何名集めたい</div>
+          <div style="font-size:13px;color:var(--t2);margin-top:4px;">新台で新規・既存客を何人呼び込むか</div>
+        </div>
+        <div style="background:rgba(76,175,129,.08);border:1px solid rgba(76,175,129,.3);border-left:4px solid var(--green);border-radius:0 12px 12px 0;padding:16px 20px;">
+          <div style="font-size:13px;font-weight:700;color:var(--green);letter-spacing:2px;margin-bottom:6px;">粗利</div>
+          <div style="font-size:17px;font-weight:700;color:var(--t1);">いくら確保したい</div>
+          <div style="font-size:13px;color:var(--t2);margin-top:4px;">投資に対してどれだけの粗利を回収するか</div>
+        </div>
+        <div style="background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.3);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;padding:16px 20px;">
+          <div style="font-size:13px;font-weight:700;color:var(--gold);letter-spacing:2px;margin-bottom:6px;">回遊</div>
+          <div style="font-size:17px;font-weight:700;color:var(--t1);">どの機種に流したい</div>
+          <div style="font-size:13px;color:var(--t2);margin-top:4px;">新台を起点に既存機種へどう誘導するか</div>
         </div>
       </div>
 
     </div>
 
-    <!-- マジックナンバー参考 + 結論 -->
-    <div style="display:flex;gap:12px;margin-top:14px;flex-shrink:0;">
-      <!-- マジックナンバー参考 -->
-      <div style="flex:2;background:rgba(79,195,247,.05);border:1px solid rgba(79,195,247,.18);border-radius:12px;padding:14px 20px;">
-        <div style="font-size:10px;font-weight:700;color:var(--blue);letter-spacing:2px;margin-bottom:10px;">参考）マジックナンバー分析…単体行動が習慣へ切り替わる境界点を特定する分析。 平均値ではなく、行動が変質するラインを見る。
-</div>
-        <div style="display:flex;gap:8px;">
-          <div style="flex:1;text-align:center;background:rgba(255,255,255,.04);border-radius:8px;padding:8px 6px;">
-            <div style="font-size:20px;font-weight:900;color:var(--blue);">2機種</div>
-            <div style="font-size:11px;color:var(--t2);margin-top:4px;">単発 → 比較評価</div>
-          </div>
-          <div style="display:flex;align-items:center;color:var(--t3);font-size:14px;">▶</div>
-          <div style="flex:1;text-align:center;background:rgba(245,166,35,.06);border-radius:8px;padding:8px 6px;">
-            <div style="font-size:20px;font-weight:900;color:var(--gold);">4機種</div>
-            <div style="font-size:11px;color:var(--t2);margin-top:4px;">試し打ち → 定着</div>
-          </div>
-          <div style="display:flex;align-items:center;color:var(--t3);font-size:14px;">▶</div>
-          <div style="flex:1;text-align:center;background:rgba(76,175,129,.06);border-radius:8px;padding:8px 6px;">
-            <div style="font-size:20px;font-weight:900;color:var(--green);">60分</div>
-            <div style="font-size:11px;color:var(--t2);margin-top:4px;">ついで → 目的来店</div>
-          </div>
-        </div>
-      </div>
-      <!-- 結論 -->
-      <div style="flex:1.2;background:linear-gradient(135deg,rgba(245,166,35,.10),rgba(79,195,247,.06));border:1px solid rgba(245,166,35,.3);border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:12px;">
-        <span style="font-size:28px;flex-shrink:0;">🎯</span>
-        <div style="font-size:15px;font-weight:700;line-height:1.65;color:var(--t1);">
-          店舗ごとに<br><span style="color:var(--gold);">目的を明確に</span>
-        </div>
+    <!-- 結論バー -->
+    <div style="margin-top:16px;flex-shrink:0;width:100%;background:linear-gradient(135deg,rgba(245,166,35,.10),rgba(79,195,247,.06));border:1px solid rgba(245,166,35,.3);border-radius:12px;padding:16px 28px;display:flex;align-items:center;gap:14px;">
+      <span style="font-size:24px;">🎯</span>
+      <div style="font-size:16px;font-weight:700;color:var(--t1);line-height:1.6;">
+        3つの目的を店舗ごとに設定し、<strong style="color:var(--gold);">新台購入の根拠</strong>をデータで裏付ける
       </div>
     </div>
 
@@ -855,7 +851,7 @@ html,body{
         <div style="flex:1;">
           <div class="sum-head" style="color:var(--blue);">各店の勝ち筋を見出す</div>
           <div class="sum-body">
-            店舗ごとに、<strong>必評価されやすい条件やタイミングを捉えることで、候補を一定精度で絞り込む</strong>。
+            店舗ごとに、<strong>評価されやすい条件やタイミングを捉えることで、候補を一定精度で絞り込む</strong>。
             このパターンを先に掴んでいる店舗が、買い方で優位に立てる。
           </div>
         </div>
@@ -865,10 +861,9 @@ html,body{
       <div class="sum-card card-green">
         <div class="sum-icon">📈</div>
         <div style="flex:1;">
-          <div class="sum-head" style="color:var(--green);">回遊データで根拠を生み出す</div>
+          <div class="sum-head" style="color:var(--green);">勝ち筋は実績データから探す</div>
           <div class="sum-body">
-            「2機種 → 4機種」到達率というKPIを軸に、説明変数と回遊実績を紐づけることで、
-            <strong>次の新台が"何台必要か"を事前に導ける</strong>体制が整う。
+            メーカー公表値をすべて鵜吞みにせず、<strong>店舗ごとの実績データと紐づけて</strong>、導入前の説明変数と目的変数の関係を可視化する。
           </div>
         </div>
       </div>
@@ -877,10 +872,9 @@ html,body{
       <div class="sum-card card-gold" style="border-left:5px solid var(--gold);flex:1.2;align-items:center;">
         <div class="sum-icon" style="font-size:40px;">🚀</div>
         <div style="flex:1;">
-          <div class="sum-head" style="color:var(--gold);font-size:20px;">目指す姿：説明変数×回遊モデルで「先を読む」</div>
+          <div class="sum-head" style="color:var(--gold);font-size:20px;">目指す姿：「先を読む」</div>
           <div class="sum-body" style="font-size:16px;color:var(--t1);">
-            導入前に取得できる説明変数を整理し、どの要素が回遊（定着）に最も効いているかを可視化する。<br>
-            <strong style="color:var(--gold);">感覚から脱して、データに裏付けられた購入判断</strong>を、今ここから始める。
+            <strong style="color:var(--gold);">感覚購入から脱して、データに裏付けられた購入判断</strong>を構築する。
           </div>
         </div>
       </div>
