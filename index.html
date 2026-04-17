@@ -367,56 +367,65 @@ html,body{
    MOBILE RESPONSIVE
 ════════════════════════════════ */
 @media (max-width: 768px){
-  /* ヘッダー・ボディ余白 */
-  .s-head{padding:14px 20px 0;gap:8px;}
-  .s-body{padding:10px 20px 68px;}
-  .s-title{font-size:20px;margin-bottom:12px;line-height:1.25;}
+  /* スライド内スクロールを許可 */
+  .slide{overflow-y:auto;overflow-x:hidden;}
+  .s-body{
+    overflow:visible;
+    flex:none;
+    padding:10px 18px 90px;
+  }
+
+  /* タイトル */
+  .s-title{font-size:20px;margin-bottom:14px;line-height:1.3;}
+
+  /* flex:1 を auto に（高さを内容に合わせる） */
+  .goal-flow,.prob-list,.rv-wrap,.sum-grid{flex:none;}
+  .s5-flow{flex:none;}
 
   /* ── SLIDE 1 ── */
-  .s1-inner{padding:0 24px;}
+  .s1-inner{padding:0 22px;}
   .s1-label{font-size:10px;margin-bottom:12px;}
-  .s1-main{font-size:clamp(34px,9vw,60px);letter-spacing:-1px;}
+  .s1-main{font-size:clamp(32px,9vw,56px);letter-spacing:-1px;}
   .s1-sub{font-size:14px;}
-  .s1-bar{margin:18px 0;}
+  .s1-bar{margin:16px 0;}
   .s1-meta{gap:20px;}
   .s1-mv{font-size:13px;}
-  .s1-deco{font-size:140px;right:0;}
-  .s1-glow1{width:400px;height:400px;top:-100px;right:-80px;}
-  .s1-glow2{width:260px;height:260px;}
+  .s1-deco{font-size:120px;right:0;opacity:.05;}
+  .s1-glow1{width:360px;height:360px;top:-80px;right:-60px;}
+  .s1-glow2{width:220px;height:220px;}
 
   /* ── SLIDE 2: 目標フロー 縦積み ── */
   .goal-flow{flex-direction:column;gap:10px;}
-  .gf-box{padding:18px 20px;gap:8px;}
-  .gf-title{font-size:22px;}
+  .gf-box{padding:16px 18px;gap:8px;}
+  .gf-title{font-size:20px;}
   .gf-body{font-size:13px;line-height:1.6;}
-  .gf-arr{flex-direction:row;padding:4px 0;gap:8px;}
-  .gf-arr-icon{font-size:22px;transform:rotate(90deg);}
+  .gf-arr{flex-direction:row;padding:2px 0;gap:8px;}
+  .gf-arr-icon{font-size:20px;transform:rotate(90deg);}
 
   /* ── SLIDE 3: 問題リスト ── */
   .prob-list{gap:10px;}
   .prob{padding:12px 14px;gap:12px;}
-  .prob-ico{font-size:20px;}
-  .prob-h{font-size:15px;margin-bottom:4px;}
-  .prob-p{font-size:12px;line-height:1.6;}
+  .prob-ico{font-size:18px;}
+  .prob-h{font-size:14px;margin-bottom:4px;}
+  .prob-p{font-size:12px;line-height:1.65;}
 
   /* ── SLIDE 4: TOP3/WORST3 縦積み ── */
   .rv-wrap{flex-direction:column;gap:10px;}
-  .rv-divider{width:100%;height:1px;flex-direction:row;}
-  .rv-divider-label{writing-mode:horizontal-tb;letter-spacing:1px;padding:4px 12px;}
+  .rv-divider{width:100%;height:1px;}
+  .rv-divider-label{writing-mode:horizontal-tb;letter-spacing:1px;padding:3px 10px;}
   .rv-col-head{padding:8px 12px;font-size:11px;}
-  .rv-card{padding:10px 12px;gap:10px;}
-  .rv-rank{font-size:22px;width:26px;}
+  .rv-card{padding:10px 12px;gap:10px;flex:none;}
+  .rv-rank{font-size:20px;width:24px;}
   .rv-name{font-size:12px;}
   .rv-meta span{font-size:10px;}
-  .rv-val{font-size:18px;}
+  .rv-val{font-size:17px;}
   .rv-val-lbl{font-size:8px;}
-  .rv-summary{flex-direction:column;gap:8px;margin-top:8px;}
+  .rv-summary{flex-direction:column;gap:8px;margin-top:10px;}
   .rv-sum-box{padding:10px 14px;}
 
-  /* ── SLIDE 5: 解決アプローチ ── */
+  /* ── SLIDE 5: 解決アプローチ 縦積み ── */
   .approach-grid{
-    grid-template-columns:1fr;
-    grid-template-rows:auto auto auto;
+    display:flex;flex-direction:column;gap:12px;
   }
   .ap-arr{flex-direction:row;gap:6px;padding:4px 0;}
   .ap-arr-icon{transform:rotate(90deg);}
@@ -424,29 +433,36 @@ html,body{
   .ap-list li{font-size:13px;padding:6px 10px;}
   .source-row{flex-direction:column;gap:10px;padding:12px 16px;}
 
-  /* ── SLIDE 6: 新台購入の目的 ── */
-  /* 現状→目標フロー 縦積み（インライン記述のため body overflowで対応） */
-  .s-body > div[style*="flex:1;min-height"]{flex-direction:column!important;gap:10px!important;}
+  /* ── SLIDE 6: 現状→目標 縦積み ── */
+  .s-body > div[style*="min-height:0"]{
+    flex-direction:column!important;
+    flex:none!important;
+    gap:10px!important;
+  }
+  .s-body > div[style*="margin-top:14px"]{
+    flex-direction:column!important;
+    gap:10px!important;
+  }
 
   /* ── SLIDE 7: まとめ ── */
   .sum-grid{gap:10px;}
-  .sum-card{padding:14px 16px;gap:12px;}
+  .sum-card{padding:14px 16px;gap:12px;flex:none;}
   .sum-icon{font-size:24px;}
   .sum-head{font-size:14px;margin-bottom:4px;}
-  .sum-body{font-size:13px;line-height:1.6;}
+  .sum-body{font-size:13px;line-height:1.65;}
 
-  /* ナビ */
-  .nav{bottom:10px;padding:6px 14px;gap:8px;}
+  /* ナビ（固定・常時表示） */
+  .nav{bottom:10px;padding:6px 12px;gap:8px;}
   .nav-btn{width:28px;height:28px;font-size:16px;}
   .dot{width:4px;height:4px;}
-  .dot.on{width:16px;}
+  .dot.on{width:14px;}
 }
 
 @media (max-width: 480px){
   .s-title{font-size:17px;}
-  .s1-main{font-size:clamp(28px,8vw,40px);}
-  .s-body{padding:8px 16px 68px;}
-  .s-head{padding:12px 16px 0;}
+  .s-body{padding:8px 14px 90px;}
+  .s-head{padding:12px 14px 0;}
+  .s1-main{font-size:clamp(26px,8vw,36px);}
 }
 
 @media print{
