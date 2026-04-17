@@ -22,9 +22,13 @@
   --br:       rgba(255,255,255,.10);
 }
 
-html,body{width:100%;height:100%;overflow:hidden;
+html,body{
+  width:100%;height:100%;overflow:hidden;
   font-family:'Noto Sans JP',sans-serif;
-  background:var(--bg);color:var(--t1);}
+  background:var(--bg);color:var(--t1);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
 
 /* ── スライドシステム ── */
 .deck{position:relative;width:100vw;height:100vh;overflow:hidden;}
@@ -32,205 +36,341 @@ html,body{width:100%;height:100%;overflow:hidden;
 .slide{
   position:absolute;inset:0;
   display:flex;flex-direction:column;
-  background:var(--panel);
-  opacity:0;transform:translateX(48px);
-  transition:opacity .4s ease,transform .4s ease;
+  background:linear-gradient(160deg,#0c1a32 0%,#07101f 100%);
+  opacity:0;transform:translateX(56px);
+  transition:opacity .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1);
   pointer-events:none;
 }
 .slide.active{opacity:1;transform:none;pointer-events:all;}
-.slide.prev{opacity:0;transform:translateX(-48px);}
-.slide::after{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;z-index:10;
-  background:linear-gradient(90deg,var(--gold),var(--blue),transparent);
-  opacity:.55;
+.slide.prev{opacity:0;transform:translateX(-56px);}
+
+/* トップグラデラインとサイドアクセント */
+.slide::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;z-index:10;
+  background:linear-gradient(90deg,transparent 0%,var(--gold) 20%,var(--blue) 70%,transparent 100%);
 }
+.slide::after{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,var(--gold) 0%,rgba(245,166,35,0) 100%);
+  opacity:.4;
+}
+
 .bg-grid{
   position:absolute;inset:0;pointer-events:none;
   background-image:
-    linear-gradient(rgba(79,195,247,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(79,195,247,.025) 1px,transparent 1px);
-  background-size:70px 70px;
+    linear-gradient(rgba(79,195,247,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(79,195,247,.018) 1px,transparent 1px);
+  background-size:64px 64px;
 }
 
 /* ── ヘッダー ── */
-.s-head{padding:28px 56px 0;display:flex;align-items:center;gap:14px;flex-shrink:0;z-index:1;position:relative;}
-.s-num{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:2px;}
+.s-head{
+  padding:26px 60px 0;
+  display:flex;align-items:center;gap:14px;
+  flex-shrink:0;z-index:1;position:relative;
+}
+.s-num{font-size:11px;font-weight:700;color:var(--t3);letter-spacing:3px;}
 .s-tag{
-  background:rgba(245,166,35,.12);border:1px solid rgba(245,166,35,.3);
+  background:rgba(245,166,35,.10);border:1px solid rgba(245,166,35,.28);
   color:var(--gold);font-size:11px;font-weight:700;
-  padding:4px 14px;border-radius:20px;letter-spacing:1px;
+  padding:4px 16px;border-radius:20px;letter-spacing:1.5px;
 }
 
 /* ── ボディ ── */
 .s-body{
-  flex:1;padding:22px 56px 64px;
+  flex:1;padding:18px 60px 60px;
   display:flex;flex-direction:column;
   overflow:hidden;position:relative;z-index:1;
 }
 .s-title{
-  font-size:36px;font-weight:700;line-height:1.25;
-  margin-bottom:28px;
+  font-size:34px;font-weight:700;line-height:1.3;
+  margin-bottom:22px;
+  letter-spacing:-.3px;
 }
 .s-title em{font-style:normal;color:var(--gold);}
 
 /* ── カード ── */
 .card{
-  background:rgba(255,255,255,.05);
-  border:1px solid var(--br);border-radius:14px;padding:24px 28px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--br);border-radius:14px;padding:22px 26px;
 }
-.card-gold{background:rgba(245,166,35,.08);border-color:rgba(245,166,35,.3);}
-.card-blue{background:rgba(79,195,247,.07);border-color:rgba(79,195,247,.28);}
-.card-green{background:rgba(76,175,129,.07);border-color:rgba(76,175,129,.28);}
-.card-red{background:rgba(239,83,80,.07);border-color:rgba(239,83,80,.25);}
+.card-gold{background:rgba(245,166,35,.07);border-color:rgba(245,166,35,.28);}
+.card-blue{background:rgba(79,195,247,.06);border-color:rgba(79,195,247,.26);}
+.card-green{background:rgba(76,175,129,.06);border-color:rgba(76,175,129,.26);}
+.card-red{background:rgba(239,83,80,.06);border-color:rgba(239,83,80,.22);}
 
 /* ── ナビ ── */
 .nav{
-  position:fixed;bottom:22px;left:50%;transform:translateX(-50%);
-  display:flex;align-items:center;gap:12px;z-index:100;
-  background:rgba(7,16,31,.9);padding:9px 20px;
-  border-radius:40px;border:1px solid var(--br);backdrop-filter:blur(20px);
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:10px;z-index:100;
+  background:rgba(7,16,31,.92);padding:8px 18px;
+  border-radius:40px;border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(24px);
+  box-shadow:0 8px 32px rgba(0,0,0,.4);
 }
 .nav-btn{
-  width:34px;height:34px;border-radius:50%;
-  border:1px solid var(--br);background:rgba(255,255,255,.07);
-  color:var(--t1);cursor:pointer;font-size:16px;
-  display:flex;align-items:center;justify-content:center;transition:all .2s;
+  width:32px;height:32px;border-radius:50%;
+  border:1px solid var(--br);background:rgba(255,255,255,.06);
+  color:var(--t1);cursor:pointer;font-size:18px;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;line-height:1;
 }
-.nav-btn:hover{background:rgba(245,166,35,.2);border-color:var(--gold);color:var(--gold);}
-.nav-dots{display:flex;gap:6px;}
-.dot{width:6px;height:6px;border-radius:50%;background:var(--t3);cursor:pointer;transition:all .3s;}
-.dot.on{width:18px;border-radius:3px;background:var(--gold);}
-.nav-ctr{font-size:12px;color:var(--t2);min-width:36px;text-align:center;}
+.nav-btn:hover{background:rgba(245,166,35,.18);border-color:var(--gold);color:var(--gold);}
+.nav-dots{display:flex;gap:6px;align-items:center;}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--t3);cursor:pointer;transition:all .3s;}
+.dot.on{width:20px;border-radius:3px;background:var(--gold);}
+.nav-ctr{font-size:11px;color:var(--t2);min-width:32px;text-align:center;letter-spacing:1px;}
 
 /* ════════════════════════════════
    SLIDE 1: タイトル
 ════════════════════════════════ */
-#s1{justify-content:center;
-  background:linear-gradient(135deg,#060d1f 0%,#0d1b35 55%,#06182c 100%);}
-.s1-deco{
-  position:absolute;right:5%;top:50%;transform:translateY(-50%);
-  font-size:260px;font-weight:900;color:var(--gold);
-  opacity:.08;line-height:1;letter-spacing:-14px;pointer-events:none;user-select:none;
+#s1{
+  background:linear-gradient(135deg,#050d1e 0%,#0c1b35 55%,#060f22 100%);
+  justify-content:center;
 }
-.s1-glow1{position:absolute;width:700px;height:700px;top:-150px;right:-100px;
-  border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,.1),transparent 70%);pointer-events:none;}
-.s1-glow2{position:absolute;width:450px;height:450px;bottom:-80px;left:60px;
-  border-radius:50%;background:radial-gradient(circle,rgba(79,195,247,.07),transparent 70%);pointer-events:none;}
-.s1-inner{position:relative;z-index:1;padding:0 80px;width:100%;}
-.s1-label{font-size:13px;font-weight:700;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:22px;}
-.s1-main{font-size:72px;font-weight:900;line-height:1.15;margin-bottom:12px;}
-.s1-main .hl{background:linear-gradient(90deg,var(--gold),var(--gold-lt));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.s1-sub{font-size:22px;font-weight:300;color:var(--t2);margin-bottom:44px;}
-.s1-bar{width:70px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);margin:32px 0;border-radius:2px;}
-.s1-meta{display:flex;gap:32px;}
-.s1-m{display:flex;flex-direction:column;gap:5px;}
-.s1-ml{font-size:10px;color:var(--t3);letter-spacing:1px;}
+.s1-glow1{position:absolute;width:800px;height:800px;top:-200px;right:-150px;
+  border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,.08),transparent 65%);pointer-events:none;}
+.s1-glow2{position:absolute;width:500px;height:500px;bottom:-100px;left:40px;
+  border-radius:50%;background:radial-gradient(circle,rgba(79,195,247,.06),transparent 65%);pointer-events:none;}
+.s1-deco{
+  position:absolute;right:3%;top:50%;transform:translateY(-50%);
+  font-size:280px;font-weight:900;
+  background:linear-gradient(135deg,rgba(245,166,35,.12),rgba(245,166,35,.03));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  line-height:1;letter-spacing:-16px;pointer-events:none;user-select:none;
+}
+.s1-inner{position:relative;z-index:1;padding:0 80px;}
+.s1-label{
+  font-size:12px;font-weight:700;letter-spacing:4px;
+  color:var(--gold);text-transform:uppercase;
+  margin-bottom:20px;display:flex;align-items:center;gap:12px;
+}
+.s1-label::before{content:'';display:block;width:24px;height:2px;background:var(--gold);}
+.s1-main{font-size:76px;font-weight:900;line-height:1.1;margin-bottom:6px;letter-spacing:-2px;}
+.s1-main .hl{
+  background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt) 50%,var(--gold) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.s1-sub{font-size:20px;font-weight:300;color:var(--t2);margin-top:8px;letter-spacing:.3px;}
+.s1-bar{width:60px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:28px 0;border-radius:2px;}
+.s1-meta{display:flex;gap:36px;}
+.s1-m{display:flex;flex-direction:column;gap:6px;}
+.s1-ml{font-size:10px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;}
 .s1-mv{font-size:14px;font-weight:500;color:var(--t2);}
 
 /* ════════════════════════════════
    SLIDE 2: 目標
 ════════════════════════════════ */
-.goal-flow{
-  display:flex;align-items:center;gap:0;flex:1;
-}
+.goal-flow{display:flex;align-items:stretch;gap:0;flex:1;}
 .gf-box{
-  flex:1;border-radius:16px;padding:32px;
-  display:flex;flex-direction:column;justify-content:center;gap:16px;
+  flex:1;border-radius:16px;padding:30px;
+  display:flex;flex-direction:column;justify-content:center;gap:14px;
 }
-.gf-step{font-size:11px;font-weight:700;letter-spacing:2px;opacity:.7;}
-.gf-title{font-size:32px;font-weight:700;line-height:1.35;}
-.gf-body{font-size:16px;color:var(--t2);line-height:1.75;}
+.gf-step{font-size:10px;font-weight:700;letter-spacing:3px;opacity:.6;}
+.gf-title{font-size:30px;font-weight:700;line-height:1.35;}
+.gf-body{font-size:15px;color:var(--t2);line-height:1.8;}
 .gf-arr{
   display:flex;flex-direction:column;align-items:center;gap:6px;
-  padding:0 20px;flex-shrink:0;
+  padding:0 22px;flex-shrink:0;justify-content:center;
 }
-.gf-arr-icon{font-size:36px;color:var(--gold);opacity:.6;}
-.gf-arr-label{font-size:11px;color:var(--t3);}
+.gf-arr-icon{font-size:32px;color:var(--gold);opacity:.5;}
+.gf-arr-label{font-size:10px;color:var(--t3);letter-spacing:1px;}
 
 /* ════════════════════════════════
    SLIDE 3: 何が問題か
 ════════════════════════════════ */
-.prob-list{display:flex;flex-direction:column;gap:16px;flex:1;justify-content:center;}
+.prob-list{display:flex;flex-direction:column;gap:14px;flex:1;justify-content:center;}
 .prob{
   display:flex;align-items:flex-start;gap:18px;
-  padding:20px 24px;
-  border-radius:12px;
-  border-left:4px solid var(--gold);
+  padding:18px 22px;border-radius:12px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.07);
+  border-left:3px solid var(--gold);
+  transition:background .2s;
 }
-.prob-ico{font-size:26px;flex-shrink:0;margin-top:2px;}
-.prob-h{font-size:20px;font-weight:700;margin-bottom:6px;}
-.prob-p{font-size:15px;color:var(--t2);line-height:1.7;}
+.prob:hover{background:rgba(255,255,255,.05);}
+.prob-ico{font-size:24px;flex-shrink:0;margin-top:2px;}
+.prob-h{font-size:18px;font-weight:700;margin-bottom:6px;}
+.prob-p{font-size:14px;color:var(--t2);line-height:1.75;}
 
 /* ════════════════════════════════
    SLIDE 4: 解決アプローチ
 ════════════════════════════════ */
 .approach-grid{
   display:grid;grid-template-columns:1fr auto 1fr;
-  gap:14px;align-items:center;
+  gap:14px;align-items:center;flex:1;
 }
-.ap-box{border-radius:14px;padding:24px;}
-.ap-label{font-size:11px;font-weight:700;letter-spacing:2px;margin-bottom:14px;opacity:.75;}
-.ap-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.ap-box{border-radius:14px;padding:22px;height:100%;}
+.ap-label{font-size:10px;font-weight:700;letter-spacing:2px;margin-bottom:14px;opacity:.7;}
+.ap-list{list-style:none;display:flex;flex-direction:column;gap:9px;}
 .ap-list li{
-  font-size:15px;padding:8px 12px;border-radius:8px;
+  font-size:14px;padding:8px 12px;border-radius:8px;
   display:flex;align-items:center;gap:10px;
 }
-.ap-list li::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0;}
-.ap-indep{background:rgba(79,195,247,.07);border:1px solid rgba(79,195,247,.22);}
+.ap-list li::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.ap-indep{background:rgba(79,195,247,.06);border:1px solid rgba(79,195,247,.2);}
 .ap-indep .ap-label{color:var(--blue);}
-.ap-indep .ap-list li{background:rgba(79,195,247,.05);}
+.ap-indep .ap-list li{background:rgba(79,195,247,.04);}
 .ap-indep .ap-list li::before{background:var(--blue);}
-.ap-dep{background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.25);}
+.ap-dep{background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.22);}
 .ap-dep .ap-label{color:var(--gold);}
-.ap-dep .ap-list li{background:rgba(245,166,35,.05);}
+.ap-dep .ap-list li{background:rgba(245,166,35,.04);}
 .ap-dep .ap-list li::before{background:var(--gold);}
-.ap-arr{display:flex;flex-direction:column;align-items:center;gap:6px;}
-.ap-arr-icon{font-size:32px;color:var(--gold);opacity:.6;}
-.ap-arr-text{font-size:12px;color:var(--t3);text-align:center;line-height:1.5;}
+.ap-arr{display:flex;flex-direction:column;align-items:center;gap:8px;}
+.ap-arr-icon{font-size:28px;color:var(--gold);opacity:.55;}
+.ap-arr-text{font-size:11px;color:var(--t3);text-align:center;line-height:1.6;}
 .source-row{
-  background:rgba(255,255,255,.04);border:1px solid var(--br);
-  border-radius:12px;padding:18px 24px;
-  display:flex;gap:20px;align-items:center;margin-top:16px;
+  background:rgba(255,255,255,.03);border:1px solid var(--br);
+  border-radius:12px;padding:16px 22px;
+  display:flex;gap:18px;align-items:center;margin-top:14px;flex-shrink:0;
 }
 
 /* ════════════════════════════════
-   SLIDE 5: 補強データ
+   SLIDE 5: 補強データ（リニューアル）
 ════════════════════════════════ */
-.magic{display:flex;align-items:stretch;gap:10px;flex:1;}
-.mg{
-  flex:1;border-radius:14px;padding:22px 16px;
+.s5-flow{
+  display:flex;align-items:stretch;gap:10px;flex:1;
+}
+.s5-step{
+  flex:1;border-radius:14px;padding:20px 18px;
   display:flex;flex-direction:column;gap:10px;
   position:relative;overflow:hidden;
 }
-.mg::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
-.mg-n{font-size:52px;font-weight:900;line-height:.9;}
-.mg-lbl{font-size:10px;font-weight:700;letter-spacing:1px;opacity:.6;}
-.mg-ttl{font-size:16px;font-weight:700;line-height:1.35;}
-.mg-desc{font-size:13px;line-height:1.7;opacity:.7;flex:1;}
-.mg-bdg{display:inline-block;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;align-self:flex-start;}
-.mg1{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);}
-.mg1::before{background:#4a6080;}
-.mg1 .mg-n{color:#8fadd4;}
-.mg2{background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.22);}
-.mg2::before{background:var(--gold);}
-.mg2 .mg-n{color:var(--gold);}.mg2 .mg-ttl{color:var(--gold-lt);}
-.mg3{background:rgba(76,175,129,.07);border:1px solid rgba(76,175,129,.28);}
-.mg3::before{background:var(--green);}
-.mg3 .mg-n{color:var(--green);}.mg3 .mg-ttl{color:#6de4a8;}
-.mg4{background:rgba(79,195,247,.07);border:1px solid rgba(79,195,247,.28);}
-.mg4::before{background:var(--blue);}
-.mg4 .mg-n{color:var(--blue);}.mg4 .mg-ttl{color:#7ad9ff;}
-.impl{
-  background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.25);
+.s5-step::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0;
+}
+.s5-step-num{
+  font-size:48px;font-weight:900;line-height:.9;margin-bottom:2px;
+}
+.s5-step-unit{font-size:13px;font-weight:700;opacity:.7;margin-top:4px;}
+.s5-step-state{font-size:15px;font-weight:700;line-height:1.4;margin-bottom:4px;}
+.s5-step-rate{
+  font-size:38px;font-weight:900;line-height:1;
+  margin:4px 0;
+}
+.s5-step-rate-lbl{font-size:10px;font-weight:700;letter-spacing:1px;opacity:.55;}
+.s5-step-desc{font-size:12.5px;color:var(--t2);line-height:1.7;flex:1;}
+.s5-badge{
+  display:inline-block;font-size:10px;font-weight:700;
+  padding:3px 10px;border-radius:20px;align-self:flex-start;
+}
+.s5-arr{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:4px;padding:0 4px;flex-shrink:0;
+}
+.s5-arr-icon{font-size:22px;opacity:.4;color:var(--gold);}
+.s5-arr-lbl{font-size:9px;color:var(--t3);text-align:center;}
+
+/* step colors */
+.s5-step.st1{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);}
+.s5-step.st1::before{background:var(--t3);}
+.s5-step.st1 .s5-step-num{color:var(--t3);}
+.s5-step.st1 .s5-step-rate{color:#8fadd4;}
+
+.s5-step.st2{background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.22);}
+.s5-step.st2::before{background:var(--gold);}
+.s5-step.st2 .s5-step-num{color:var(--gold);}
+.s5-step.st2 .s5-step-rate{color:var(--gold-lt);}
+
+.s5-step.st3{background:rgba(76,175,129,.07);border:1px solid rgba(76,175,129,.28);}
+.s5-step.st3::before{background:var(--green);}
+.s5-step.st3 .s5-step-num{color:var(--green);}
+.s5-step.st3 .s5-step-rate{color:#6de4a8;}
+
+.s5-kpi{
+  background:linear-gradient(135deg,rgba(245,166,35,.10),rgba(79,195,247,.06));
+  border:1px solid rgba(245,166,35,.3);
   border-radius:12px;padding:14px 20px;
   display:flex;align-items:center;gap:14px;
-  margin-top:14px;flex-shrink:0;
+  margin-top:12px;flex-shrink:0;
+}
+
+/* ════════════════════════════════
+   SLIDE 6: まとめ（ポジティブ）
+════════════════════════════════ */
+.sum-grid{
+  display:flex;flex-direction:column;gap:16px;flex:1;
+}
+.sum-card{
+  border-radius:14px;padding:22px 26px;
+  display:flex;align-items:flex-start;gap:18px;
+  flex:1;
+}
+.sum-icon{font-size:32px;flex-shrink:0;line-height:1;margin-top:2px;}
+.sum-head{font-size:17px;font-weight:700;margin-bottom:8px;}
+.sum-body{font-size:15px;color:var(--t2);line-height:1.8;}
+.sum-body strong{color:var(--t1);}
+
+/* ════════════════════════════════
+   SLIDE 4: 実績データ TOP3 vs WORST3
+════════════════════════════════ */
+.rv-wrap{display:flex;gap:16px;flex:1;align-items:stretch;}
+.rv-col{flex:1;display:flex;flex-direction:column;gap:10px;}
+.rv-col-head{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 16px;border-radius:10px;
+  font-size:12px;font-weight:700;letter-spacing:2px;
+  flex-shrink:0;
+}
+.rv-card{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 18px;border-radius:12px;
+  flex:1;
+}
+.rv-rank{
+  font-size:28px;font-weight:900;line-height:1;
+  flex-shrink:0;width:32px;text-align:center;
+}
+.rv-info{flex:1;min-width:0;}
+.rv-name{font-size:13px;font-weight:700;line-height:1.4;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.rv-meta{display:flex;gap:10px;flex-wrap:wrap;}
+.rv-meta span{font-size:11px;color:var(--t2);}
+.rv-val{
+  font-size:22px;font-weight:900;line-height:1;
+  text-align:right;flex-shrink:0;white-space:nowrap;
+}
+.rv-val-lbl{font-size:9px;font-weight:700;letter-spacing:1px;opacity:.55;text-align:right;margin-top:3px;}
+
+/* TOP side */
+.rv-col.top .rv-col-head{background:rgba(76,175,129,.10);border:1px solid rgba(76,175,129,.25);color:var(--green);}
+.rv-col.top .rv-card{background:rgba(76,175,129,.06);border:1px solid rgba(76,175,129,.2);}
+.rv-col.top .rv-rank{color:var(--green);}
+.rv-col.top .rv-val{color:#6de4a8;}
+
+/* WORST side */
+.rv-col.worst .rv-col-head{background:rgba(239,83,80,.08);border:1px solid rgba(239,83,80,.22);color:var(--red);}
+.rv-col.worst .rv-card{background:rgba(239,83,80,.05);border:1px solid rgba(239,83,80,.18);}
+.rv-col.worst .rv-rank{color:var(--red);}
+.rv-col.worst .rv-val{color:#ff8a80;}
+
+.rv-divider{
+  width:1px;background:var(--br);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;position:relative;
+}
+.rv-divider-label{
+  position:absolute;
+  background:var(--panel);border:1px solid var(--br);
+  padding:6px 10px;border-radius:8px;
+  font-size:11px;font-weight:700;color:var(--t3);
+  writing-mode:vertical-rl;letter-spacing:2px;
+}
+.rv-summary{
+  display:flex;gap:12px;margin-top:12px;flex-shrink:0;
+}
+.rv-sum-box{
+  flex:1;border-radius:10px;padding:12px 18px;
+  display:flex;align-items:center;justify-content:space-between;
 }
 
 @media print{
   html,body{overflow:visible;width:1280px;height:auto;}
   .deck{overflow:visible;height:auto;}
-  .slide{position:relative;opacity:1!important;transform:none!important;pointer-events:all!important;page-break-after:always;height:720px;width:1280px;}
+  .slide{
+    position:relative;opacity:1!important;transform:none!important;
+    pointer-events:all!important;page-break-after:always;
+    height:720px;width:1280px;
+  }
   .nav{display:none;}
 }
 </style>
@@ -252,11 +392,11 @@ html,body{width:100%;height:100%;overflow:hidden;
       フェーズ0<br>
       <span class="hl">目標設定</span>
     </div>
-    <div class="s1-bar"></div>
     <div class="s1-sub">購入台数に根拠を持たせる — 店舗に合った買い方の構築</div>
+    <div class="s1-bar"></div>
     <div class="s1-meta">
-      <div class="s1-m"><span class="s1-ml">DATE</span><span class="s1-mv">2026年4月</span></div>
-      <div class="s1-m"><span class="s1-ml">PHASE</span><span class="s1-mv">Phase 0 — 目標設定</span></div>
+      <div class="s1-m"><span class="s1-ml">Date</span><span class="s1-mv">2026年4月</span></div>
+      <div class="s1-m"><span class="s1-ml">Phase</span><span class="s1-mv">Phase 0 — 目標設定</span></div>
     </div>
   </div>
 </section>
@@ -266,12 +406,11 @@ html,body{width:100%;height:100%;overflow:hidden;
 ══════════════════════════════════════ -->
 <section class="slide" id="s2">
   <div class="bg-grid"></div>
-  <div class="s-head"><span class="s-num">02 / 06</span><span class="s-tag">目標</span></div>
+  <div class="s-head"><span class="s-num">02 / 07</span><span class="s-tag">目標</span></div>
   <div class="s-body">
-    <div class="s-title">フェーズ0<em>目標</em></div>
+    <div class="s-title">フェーズ0 <em>目標</em></div>
 
     <div class="goal-flow">
-      <!-- GOAL -->
       <div class="gf-box card-gold">
         <div class="gf-step">GOAL</div>
         <div class="gf-title" style="color:var(--gold);">購入台数に<br>根拠を持たせる</div>
@@ -281,13 +420,11 @@ html,body{width:100%;height:100%;overflow:hidden;
         </div>
       </div>
 
-      <!-- 矢印 -->
       <div class="gf-arr">
         <div class="gf-arr-icon">→</div>
         <div class="gf-arr-label">目的</div>
       </div>
 
-      <!-- OUTCOME -->
       <div class="gf-box card-blue">
         <div class="gf-step">OUTCOME</div>
         <div class="gf-title" style="color:var(--blue);">店舗に合った<br>買い方の構築</div>
@@ -298,10 +435,9 @@ html,body{width:100%;height:100%;overflow:hidden;
       </div>
     </div>
 
-    <!-- 補足バー -->
-    <div style="margin-top:20px;background:rgba(255,255,255,.04);border:1px solid var(--br);border-radius:12px;padding:18px 24px;display:flex;align-items:center;gap:16px;">
-      <span style="font-size:22px;">📌</span>
-      <p style="font-size:16px;color:var(--t2);line-height:1.65;">
+    <div style="margin-top:18px;background:rgba(255,255,255,.04);border:1px solid var(--br);border-radius:12px;padding:16px 22px;display:flex;align-items:center;gap:16px;flex-shrink:0;">
+      <span style="font-size:20px;">📌</span>
+      <p style="font-size:15px;color:var(--t2);line-height:1.7;">
         「良い台を増やす」より「<strong style="color:var(--gold);">悪い台を買い過ぎない</strong>」。機種の良し悪しより、<strong style="color:var(--t1);">台数の判断に根拠</strong>を持たせることが先決。
       </p>
     </div>
@@ -313,26 +449,26 @@ html,body{width:100%;height:100%;overflow:hidden;
 ══════════════════════════════════════ -->
 <section class="slide" id="s3">
   <div class="bg-grid"></div>
-  <div class="s-head"><span class="s-num">03 / 06</span><span class="s-tag">問題の構造</span></div>
+  <div class="s-head"><span class="s-num">03 / 07</span><span class="s-tag">問題の構造</span></div>
   <div class="s-body">
-    <div class="s-title">なぜ<em>根拠がない</em>買い方になるのか</div>
+    <div class="s-title">現状の問題点<em>機械購入判断の根拠がない</em></div>
 
     <div class="prob-list">
-      <div class="prob card">
+      <div class="prob">
         <div class="prob-ico">📊</div>
         <div>
           <div class="prob-h">担当者任せで予測する仕組みがない</div>
           <div class="prob-p">機種ごとの投資効率を事前に推定する手段がなく、導入台数は担当者の経験・感覚・メーカー提案に依存している。</div>
         </div>
       </div>
-      <div class="prob card">
+      <div class="prob">
         <div class="prob-ico">🏪</div>
         <div>
           <div class="prob-h">店舗ごとの特性が見えていない</div>
           <div class="prob-p">同じ機種でも、店舗の客層・既存台構成・回遊パターンによって結果は大きく変わる。しかし現状は全店ほぼ同一判断になりやすい。</div>
         </div>
       </div>
-      <div class="prob card">
+      <div class="prob">
         <div class="prob-ico">🔄</div>
         <div>
           <div class="prob-h">機種間の「つながり」で評価できていない</div>
@@ -344,16 +480,124 @@ html,body{width:100%;height:100%;overflow:hidden;
 </section>
 
 <!-- ══════════════════════════════════════
-     SLIDE 4 : 解決アプローチ
+     SLIDE 4 : 実績データ TOP3 vs WORST3
 ══════════════════════════════════════ -->
 <section class="slide" id="s4">
   <div class="bg-grid"></div>
-  <div class="s-head"><span class="s-num">04 / 06</span><span class="s-tag">解決アプローチ</span></div>
+  <div class="s-head"><span class="s-num">04 / 07</span><span class="s-tag">2025年度 実績データ</span></div>
   <div class="s-body">
-    <div class="s-title"><em>新台回遊データ</em>を軸に、根拠をつくる</div>
+    <div class="s-title">2025年度の当たり外れの<em>"差"</em> — 期間粗利＋資産価値（2025年度）</div>
 
-    <div class="approach-grid" style="flex:1;">
-      <!-- 説明変数 -->
+    <div class="rv-wrap">
+
+      <!-- TOP3 -->
+      <div class="rv-col top">
+        <div class="rv-col-head">▲ TOP 3 — 利益貢献上位</div>
+        <div class="rv-card">
+          <div class="rv-rank">1</div>
+          <div class="rv-info">
+            <div class="rv-name">SネオアイムジャグラーEX-KK</div>
+            <div class="rv-meta"><span>2,019台</span><span>投資効率 271%</span></div>
+          </div>
+          <div>
+            <div class="rv-val">＋16.7億</div>
+            <div class="rv-val-lbl">期間粗利＋資産価値</div>
+          </div>
+        </div>
+        <div class="rv-card">
+          <div class="rv-rank">2</div>
+          <div class="rv-info">
+            <div class="rv-name">e新世紀エヴァンゲリオン17 はじまりの記憶R</div>
+            <div class="rv-meta"><span>1,034台</span><span>投資効率 270%</span></div>
+          </div>
+          <div>
+            <div class="rv-val">＋10.4億</div>
+            <div class="rv-val-lbl">期間粗利＋資産価値</div>
+          </div>
+        </div>
+        <div class="rv-card">
+          <div class="rv-rank">3</div>
+          <div class="rv-info">
+            <div class="rv-name">Lスマスロ北斗の拳 転生の章2 MW</div>
+            <div class="rv-meta"><span>1,287台</span><span>投資効率 196%</span></div>
+          </div>
+          <div>
+            <div class="rv-val">＋7.0億</div>
+            <div class="rv-val-lbl">期間粗利＋資産価値</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rv-divider"><div class="rv-divider-label">VS</div></div>
+
+      <!-- WORST3 -->
+      <div class="rv-col worst">
+        <div class="rv-col-head">▼ WORST 3 — 損失上位</div>
+        <div class="rv-card">
+          <div class="rv-rank">1</div>
+          <div class="rv-info">
+            <div class="rv-name">Pスーパー海物語IN沖縄6LTP</div>
+            <div class="rv-meta"><span>1,440台</span><span>投資効率 59%</span></div>
+          </div>
+          <div>
+            <div class="rv-val">▲9.1億</div>
+            <div class="rv-val-lbl">期間粗利＋資産価値</div>
+          </div>
+        </div>
+        <div class="rv-card">
+          <div class="rv-rank">2</div>
+          <div class="rv-info">
+            <div class="rv-name">L/ナキドデュオ2/FR</div>
+            <div class="rv-meta"><span>599台</span><span>投資効率 47%</span></div>
+          </div>
+          <div>
+            <div class="rv-val">▲1.6億</div>
+            <div class="rv-val-lbl">期間粗利＋資産価値</div>
+          </div>
+        </div>
+        <div class="rv-card">
+          <div class="rv-rank">3</div>
+          <div class="rv-info">
+            <div class="rv-name">eフィーバーブルーロックMZ</div>
+            <div class="rv-meta"><span>1,204台</span><span>投資効率 83%</span></div>
+          </div>
+          <div>
+            <div class="rv-val">▲1.0億</div>
+            <div class="rv-val-lbl">期間粗利＋資産価値</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- サマリーバー -->
+    <div class="rv-summary">
+      <div class="rv-sum-box" style="background:rgba(76,175,129,.08);border:1px solid rgba(76,175,129,.25);">
+        <span style="font-size:13px;font-weight:700;color:var(--green);">TOP3 合計</span>
+        <span style="font-size:26px;font-weight:900;color:#6de4a8;">＋34.1億円</span>
+      </div>
+      <div style="display:flex;align-items:center;padding:0 8px;font-size:20px;color:var(--t3);">vs</div>
+      <div class="rv-sum-box" style="background:rgba(239,83,80,.07);border:1px solid rgba(239,83,80,.22);">
+        <span style="font-size:13px;font-weight:700;color:var(--red);">WORST3 合計</span>
+        <span style="font-size:26px;font-weight:900;color:#ff8a80;">▲11.7億円</span>
+      </div>
+      <div class="rv-sum-box" style="background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.25);flex:1.2;">
+        <span style="font-size:13px;font-weight:700;color:var(--gold);">💡 同じ台数規模でも、<strong style="color:var(--t1);">買い方の根拠</strong>で結果が大きく変わる</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SLIDE 5 : 解決アプローチ
+══════════════════════════════════════ -->
+<section class="slide" id="s5">
+  <div class="bg-grid"></div>
+  <div class="s-head"><span class="s-num">05 / 07</span><span class="s-tag">解決アプローチ</span></div>
+  <div class="s-body">
+    <div class="s-title"><em>各店ごとの新台回遊データ</em>を軸に、根拠をつくる</div>
+
+    <div class="approach-grid">
       <div class="ap-box ap-indep">
         <div class="ap-label">説明変数（導入前に取得可能）</div>
         <ul class="ap-list">
@@ -365,19 +609,17 @@ html,body{width:100%;height:100%;overflow:hidden;
         </ul>
       </div>
 
-      <!-- 矢印 -->
       <div class="ap-arr">
         <div class="ap-arr-icon">⇒</div>
         <div class="ap-arr-text">影響度<br>分析</div>
       </div>
 
-      <!-- 目的変数 -->
       <div class="ap-box ap-dep">
         <div class="ap-label">目的変数</div>
         <ul class="ap-list">
           <li>🔄 店舗ごとの新台回遊データ</li>
         </ul>
-        <div style="margin-top:18px;font-size:15px;color:var(--t2);line-height:1.75;">
+        <div style="margin-top:16px;font-size:14px;color:var(--t2);line-height:1.8;">
           顧客が複数機種を移動する「回遊行動」を定着の指標に設定。<br>
           どの特性が回遊に最も影響するかを抽出し、<br>
           <strong style="color:var(--gold);">「売れやすい背景」を定量化する。</strong>
@@ -385,14 +627,13 @@ html,body{width:100%;height:100%;overflow:hidden;
       </div>
     </div>
 
-    <!-- ソース -->
     <div class="source-row">
       <div style="flex-shrink:0;">
         <div style="font-size:14px;font-weight:700;">THINX · 吉元氏</div>
-        <div style="font-size:13px;color:var(--t2);">上場メーカー遊技機開発/ データアナリスト・統計士</div>
+        <div style="font-size:12px;color:var(--t2);">上場メーカー遊技機開発 / データアナリスト・統計士</div>
       </div>
       <div style="width:1px;background:var(--br);align-self:stretch;"></div>
-      <div style="font-size:14px;color:var(--t2);line-height:1.75;flex:1;">
+      <div style="font-size:13px;color:var(--t2);line-height:1.8;flex:1;">
         「重要なのは回遊データを起点に、導入前の説明変数と目的変数の関係を可視化することだ」
       </div>
     </div>
@@ -400,97 +641,148 @@ html,body{width:100%;height:100%;overflow:hidden;
 </section>
 
 <!-- ══════════════════════════════════════
-     SLIDE 5 : 補強データ
+     SLIDE 6 : 新台購入の目的
 ══════════════════════════════════════ -->
-<section class="slide" id="s5">
+<section class="slide" id="s6">
   <div class="bg-grid"></div>
-  <div class="s-head"><span class="s-num">05 / 06</span><span class="s-tag">補強データ</span></div>
+  <div class="s-head"><span class="s-num">06 / 07</span><span class="s-tag">新台購入の目的</span></div>
   <div class="s-body">
-    <div class="s-title"><em>複数体験</em>が定着を生む構造（THINX-LAB 分析）</div>
+    <div class="s-title"><em>新台購入の目的</em>を、店舗ごとに明確にする</div>
 
-    <div class="magic">
-      <div class="mg mg1">
-        <div class="mg-n">1</div>
-        <div class="mg-lbl">機種体験</div>
-        <div class="mg-ttl">評価固定・<br>離反リスク高</div>
-        <div class="mg-desc">単一機種のみの顧客は評価が固定され、結果次第で離反に直結しやすい。</div>
-        <div class="mg-bdg" style="background:rgba(255,255,255,.06);color:var(--t3);border:1px solid rgba(255,255,255,.1);">高リスク</div>
+    <!-- 現状 → 目標 フロー -->
+    <div style="display:flex;align-items:stretch;gap:0;flex:1;min-height:0;">
+
+      <!-- 現状 -->
+      <div style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:28px 32px;display:flex;flex-direction:column;gap:14px;justify-content:center;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:3px;color:var(--t3);">CURRENT STATE</div>
+        <div style="font-size:26px;font-weight:700;color:var(--t2);line-height:1.3;">現状</div>
+        <div style="width:40px;height:2px;background:var(--t3);border-radius:2px;"></div>
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px 20px;text-align:center;">
+          <div style="font-size:18px;font-weight:700;color:var(--t1);line-height:1.6;">全店共通で<br><span style="color:var(--t2);">集客＋粗利確保</span></div>
+        </div>
+        <div style="font-size:13px;color:var(--t3);line-height:1.7;">目的が曖昧なまま全店一律で判断。<br>何を優先すべきかが店舗ごとに異なるのに、共通の基準で動いている。</div>
       </div>
-      <div class="mg mg2">
-        <div class="mg-n">2</div>
-        <div class="mg-lbl">機種体験</div>
-        <div class="mg-ttl">比較が生まれ<br>行動が変化</div>
-        <div class="mg-desc">比較行動が発生し、特定機種への依存度が下がる。選好の探索が始まる。</div>
-        <div class="mg-bdg" style="background:rgba(245,166,35,.12);color:var(--gold);border:1px solid rgba(245,166,35,.25);">変化の境界</div>
+
+      <!-- 矢印 -->
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 24px;flex-shrink:0;gap:6px;">
+        <div style="font-size:36px;color:var(--gold);opacity:.6;">→</div>
+        <div style="font-size:10px;color:var(--t3);letter-spacing:1px;">目指す姿</div>
       </div>
-      <div class="mg mg3">
-        <div class="mg-n">4</div>
-        <div class="mg-lbl">機種体験</div>
-        <div class="mg-ttl">探索が習慣化<br>定着率急上昇</div>
-        <div class="mg-desc">来店目的が「特定台を打つ」から「選んで遊ぶ」へ変質。定着の段差が生まれる。</div>
-        <div class="mg-bdg" style="background:rgba(76,175,129,.12);color:var(--green);border:1px solid rgba(76,175,129,.25);">定着ライン</div>
+
+      <!-- 目標 -->
+      <div style="flex:1.4;background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.28);border-radius:16px;padding:28px 32px;display:flex;flex-direction:column;gap:12px;justify-content:center;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:3px;color:var(--gold);">TARGET STATE</div>
+        <div style="font-size:26px;font-weight:700;color:var(--gold);line-height:1.3;">目標</div>
+        <div style="width:40px;height:2px;background:var(--gold);border-radius:2px;opacity:.5;"></div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="background:rgba(79,195,247,.08);border:1px solid rgba(79,195,247,.22);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:14px;">
+            <span style="font-size:20px;">👥</span>
+            <div>
+              <div style="font-size:11px;font-weight:700;color:var(--blue);letter-spacing:1.5px;margin-bottom:3px;">集客</div>
+              <div style="font-size:15px;font-weight:700;color:var(--t1);">何名集めたい</div>
+            </div>
+          </div>
+          <div style="background:rgba(76,175,129,.07);border:1px solid rgba(76,175,129,.24);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:14px;">
+            <span style="font-size:20px;">💴</span>
+            <div>
+              <div style="font-size:11px;font-weight:700;color:var(--green);letter-spacing:1.5px;margin-bottom:3px;">粗利</div>
+              <div style="font-size:15px;font-weight:700;color:var(--t1);">いくら確保したい</div>
+            </div>
+          </div>
+          <div style="background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.22);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:14px;">
+            <span style="font-size:20px;">🔄</span>
+            <div>
+              <div style="font-size:11px;font-weight:700;color:var(--gold);letter-spacing:1.5px;margin-bottom:3px;">回遊</div>
+              <div style="font-size:15px;font-weight:700;color:var(--t1);">どの機種に流したい</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="mg mg4">
-        <div class="mg-n">∞</div>
-        <div class="mg-lbl">複数選択肢</div>
-        <div class="mg-ttl">離反しにくい<br>顧客構造の完成</div>
-        <div class="mg-desc">複数機種遊技者は単一遊技者より明確に離反しにくい。選択肢の豊かさが顧客定着を支える。</div>
-        <div class="mg-bdg" style="background:rgba(79,195,247,.12);color:var(--blue);border:1px solid rgba(79,195,247,.25);">目標状態</div>
+
+    </div>
+
+    <!-- マジックナンバー参考 + 結論 -->
+    <div style="display:flex;gap:12px;margin-top:14px;flex-shrink:0;">
+      <!-- マジックナンバー参考 -->
+      <div style="flex:2;background:rgba(79,195,247,.05);border:1px solid rgba(79,195,247,.18);border-radius:12px;padding:14px 20px;">
+        <div style="font-size:10px;font-weight:700;color:var(--blue);letter-spacing:2px;margin-bottom:10px;">参考）マジックナンバー分析…単体行動が習慣へ切り替わる境界点を特定する分析。 平均値ではなく、行動が変質するラインを見る。
+</div>
+        <div style="display:flex;gap:8px;">
+          <div style="flex:1;text-align:center;background:rgba(255,255,255,.04);border-radius:8px;padding:8px 6px;">
+            <div style="font-size:20px;font-weight:900;color:var(--blue);">2機種</div>
+            <div style="font-size:11px;color:var(--t2);margin-top:4px;">単発 → 比較評価</div>
+          </div>
+          <div style="display:flex;align-items:center;color:var(--t3);font-size:14px;">▶</div>
+          <div style="flex:1;text-align:center;background:rgba(245,166,35,.06);border-radius:8px;padding:8px 6px;">
+            <div style="font-size:20px;font-weight:900;color:var(--gold);">4機種</div>
+            <div style="font-size:11px;color:var(--t2);margin-top:4px;">試し打ち → 定着</div>
+          </div>
+          <div style="display:flex;align-items:center;color:var(--t3);font-size:14px;">▶</div>
+          <div style="flex:1;text-align:center;background:rgba(76,175,129,.06);border-radius:8px;padding:8px 6px;">
+            <div style="font-size:20px;font-weight:900;color:var(--green);">60分</div>
+            <div style="font-size:11px;color:var(--t2);margin-top:4px;">ついで → 目的来店</div>
+          </div>
+        </div>
+      </div>
+      <!-- 結論 -->
+      <div style="flex:1.2;background:linear-gradient(135deg,rgba(245,166,35,.10),rgba(79,195,247,.06));border:1px solid rgba(245,166,35,.3);border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:28px;flex-shrink:0;">🎯</span>
+        <div style="font-size:15px;font-weight:700;line-height:1.65;color:var(--t1);">
+          店舗ごとに<br><span style="color:var(--gold);">目的を明確に</span>
+        </div>
       </div>
     </div>
 
-    <div class="impl">
-      <span style="font-size:20px;">💡</span>
-      <div style="font-size:15px;font-weight:500;line-height:1.65;">
-        <strong style="color:var(--gold);">新台導入への示唆：</strong>
-        新台は「単体の出玉評価」ではなく「<strong>既存の台群の中で選択肢として機能するか</strong>」で評価すべき。これが回遊モデルを根拠に使う理由。
-      </div>
-    </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════
-     SLIDE 6 : まとめ
+     SLIDE 7 : まとめ（ポジティブ）
 ══════════════════════════════════════ -->
-<section class="slide" id="s6">
+<section class="slide" id="s7">
   <div class="bg-grid"></div>
-  <div class="s-head"><span class="s-num">06 / 06</span><span class="s-tag">まとめ</span></div>
+  <div class="s-head"><span class="s-num">07 / 07</span><span class="s-tag">まとめ</span></div>
   <div class="s-body">
-    <div class="s-title">まとめ：実務上の難易度と<em>解決の方向性</em></div>
+    <div class="s-title">まとめ：<em>データが導く</em>、勝てる買い方へ</div>
 
-    <div style="display:flex;flex-direction:column;gap:18px;flex:1;">
-      
-      <!-- 結論1 -->
-      <div class="card card-red" style="padding:22px 28px;">
-        <span style="font-weight:700;color:var(--red);font-size:18px;margin-bottom:10px;display:block;">完全な個別最適化は、実務上困難である</span>
-        <p style="font-size:16px;color:var(--t2);line-height:1.75;">
-          「店舗ごとの特性と掛け合わせた購入判断」は一定の精度で選択の幅を狭めます。しかし基本的に、顧客の嗜好性は<span style="color:var(--t1);font-weight:700;">店舗規模の大小に関わらず、マクロとミクロで同様の性質を持つ傾向</span>があります。<br>
-          したがって、「無理なく（買いすぎない）・無駄なく（不足なく）」という観点で、各店舗ごとに最適化された購入判断を構築することは、実務上は難易度が高い領域になります。
-        </p>
-      </div>
+    <div class="sum-grid">
 
-      <!-- 結論2 -->
-      <div class="card card-blue" style="padding:22px 28px;">
-        <span style="font-weight:700;color:var(--blue);font-size:18px;margin-bottom:10px;display:block;">機種の必要性には「再現性」がある</span>
-        <p style="font-size:16px;color:var(--t2);line-height:1.75;">
-          言い換えると、店舗規模の大小に関わらず、<span style="color:var(--t1);font-weight:700;">必要とされる機種は一定の再現性をもって“必要になる”構造</span>にあると考えられます。
-        </p>
-      </div>
-
-      <!-- 結論3 -->
-      <div class="card card-gold" style="padding:26px 28px;border-left:8px solid var(--gold);flex:1;display:flex;align-items:center;">
-        <div style="display:flex;align-items:flex-start;gap:18px;">
-          <span style="font-size:36px;line-height:1;">🎯</span>
-          <div>
-            <span style="font-weight:700;color:var(--gold);font-size:22px;margin-bottom:12px;display:block;">目指すべきアプローチ</span>
-            <p style="font-size:18px;color:var(--t1);line-height:1.7;font-weight:500;">
-              導入前に取得できる「明確な説明変数」を設置し、<br>
-              どの要素が「回遊（目的変数）」に最も影響しているかを抽出する。
-            </p>
+      <!-- ポイント1 -->
+      <div class="sum-card card-blue">
+        <div class="sum-icon">🔍</div>
+        <div style="flex:1;">
+          <div class="sum-head" style="color:var(--blue);">各店の勝ち筋を見出す</div>
+          <div class="sum-body">
+            店舗ごとに、<strong>必評価されやすい条件やタイミングを捉えることで、候補を一定精度で絞り込む</strong>。
+            このパターンを先に掴んでいる店舗が、買い方で優位に立てる。
           </div>
         </div>
       </div>
-      
+
+      <!-- ポイント2 -->
+      <div class="sum-card card-green">
+        <div class="sum-icon">📈</div>
+        <div style="flex:1;">
+          <div class="sum-head" style="color:var(--green);">回遊データで根拠を生み出す</div>
+          <div class="sum-body">
+            「2機種 → 4機種」到達率というKPIを軸に、説明変数と回遊実績を紐づけることで、
+            <strong>次の新台が"何台必要か"を事前に導ける</strong>体制が整う。
+          </div>
+        </div>
+      </div>
+
+      <!-- ポイント3 ゴールド -->
+      <div class="sum-card card-gold" style="border-left:5px solid var(--gold);flex:1.2;align-items:center;">
+        <div class="sum-icon" style="font-size:40px;">🚀</div>
+        <div style="flex:1;">
+          <div class="sum-head" style="color:var(--gold);font-size:20px;">目指す姿：説明変数×回遊モデルで「先を読む」</div>
+          <div class="sum-body" style="font-size:16px;color:var(--t1);">
+            導入前に取得できる説明変数を整理し、どの要素が回遊（定着）に最も効いているかを可視化する。<br>
+            <strong style="color:var(--gold);">感覚から脱して、データに裏付けられた購入判断</strong>を、今ここから始める。
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -501,12 +793,12 @@ html,body{width:100%;height:100%;overflow:hidden;
 <nav class="nav">
   <button class="nav-btn" onclick="go(-1)">‹</button>
   <div class="nav-dots" id="dots"></div>
-  <span class="nav-ctr" id="ctr">1 / 6</span>
+  <span class="nav-ctr" id="ctr">1 / 7</span>
   <button class="nav-btn" onclick="go(1)">›</button>
 </nav>
 
 <script>
-const N=6;let cur=1;
+const N=7; let cur=1;
 const dotsEl=document.getElementById('dots');
 for(let i=1;i<=N;i++){
   const d=document.createElement('div');
@@ -516,8 +808,8 @@ for(let i=1;i<=N;i++){
 }
 function goTo(n){
   const prev=document.getElementById('s'+cur);
-  prev.classList.remove('active');prev.classList.add('prev');
-  setTimeout(()=>prev.classList.remove('prev'),450);
+  prev.classList.remove('active'); prev.classList.add('prev');
+  setTimeout(()=>prev.classList.remove('prev'),480);
   cur=Math.max(1,Math.min(n,N));
   document.getElementById('s'+cur).classList.add('active');
   document.getElementById('ctr').textContent=cur+' / '+N;
@@ -525,8 +817,8 @@ function goTo(n){
 }
 function go(d){goTo(cur+d);}
 document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);
-  if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1);
+  if(e.key==='ArrowRight'||e.key==='ArrowDown') go(1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp') go(-1);
 });
 </script>
 </body>
