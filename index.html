@@ -424,14 +424,15 @@ html,body{
   .rv-sum-box{padding:10px 14px;}
 
   /* ── SLIDE 5: 解決アプローチ 縦積み ── */
-  .approach-grid{
-    display:flex;flex-direction:column;gap:12px;
+  .s5-outer{flex:none!important;}
+  .s5-cols{flex-direction:column!important;align-items:stretch!important;gap:10px!important;}
+  .s5-steps{flex:none!important;}
+  .s5-venn-col{flex:none!important;}
+  .s5-venn{
+    transform:scale(0.62);
+    transform-origin:top center;
+    margin-bottom:-160px;
   }
-  .ap-arr{flex-direction:row;gap:6px;padding:4px 0;}
-  .ap-arr-icon{transform:rotate(90deg);}
-  .ap-box{padding:16px;height:auto;}
-  .ap-list li{font-size:13px;padding:6px 10px;}
-  .source-row{flex-direction:column;gap:10px;padding:12px 16px;}
 
   /* ── SLIDE 6: 現状→目標 縦積み ── */
   .s-body > div[style*="min-height:0"]{
@@ -708,13 +709,13 @@ html,body{
   <div class="s-body">
     <div class="s-title"><em>根拠をどこに作るか？</em></div>
 
-    <div style="display:flex;flex-direction:column;gap:14px;flex:1;min-height:0;">
+    <div class="s5-outer" style="display:flex;flex-direction:column;gap:14px;flex:1;min-height:0;">
 
       <!-- 上段：3カラム横並び -->
-      <div style="display:flex;gap:14px;flex:1;min-height:0;align-items:center;">
+      <div class="s5-cols" style="display:flex;gap:14px;flex:1;min-height:0;align-items:center;">
 
         <!-- STEP1 + STEP2 まとめて青枠 -->
-        <div style="flex:1;background:rgba(79,195,247,.06);border:1px solid rgba(79,195,247,.22);border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:14px;min-width:0;">
+        <div class="s5-steps" style="flex:1;background:rgba(79,195,247,.06);border:1px solid rgba(79,195,247,.22);border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:14px;min-width:0;">
 
           <!-- STEP1 -->
           <div style="display:flex;flex-direction:column;gap:6px;">
@@ -745,8 +746,8 @@ html,body{
         </div>
 
         <!-- ベン図 -->
-        <div style="flex:1.8;display:flex;align-items:center;justify-content:center;min-width:0;">
-          <div style="position:relative;width:440px;height:422px;flex-shrink:0;">
+        <div class="s5-venn-col" style="flex:1.8;display:flex;align-items:center;justify-content:center;min-width:0;">
+          <div class="s5-venn" style="position:relative;width:440px;height:422px;flex-shrink:0;">
             <div style="position:absolute;top:0;left:22px;width:254px;height:254px;border-radius:50%;background:rgba(79,195,247,.30);border:2px solid rgba(79,195,247,.6);"></div>
             <div style="position:absolute;top:0;right:22px;width:254px;height:254px;border-radius:50%;background:rgba(76,175,129,.28);border:2px solid rgba(76,175,129,.6);"></div>
             <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:254px;height:254px;border-radius:50%;background:rgba(245,166,35,.26);border:2px solid rgba(245,166,35,.6);"></div>
